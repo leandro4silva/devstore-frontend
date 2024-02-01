@@ -1,5 +1,5 @@
 import { Product } from "@/data/types/product";
-import { useFetchFeaturedProducts } from "@/hooks/products/useFetchFeaturedProducts";
+import { useGetFeaturedProducts } from "@/hooks/products/useGetFeaturedProducts";
 import { useGetProductBySlug } from "@/hooks/products/useGetProductBySlug";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -16,12 +16,12 @@ export async function generateMetadata({
   const { product } = await useGetProductBySlug(params);
 
   return {
-    title: product.title,
+    title: product ? product.title : "",
   };
 }
 
 export async function generateStaticParams() {
-  const { products } = await useFetchFeaturedProducts();
+  const { products } = await useGetFeaturedProducts();
 
   return products.map((product) => {
     return { slug: product.slug };
@@ -31,7 +31,7 @@ export async function generateStaticParams() {
 export default async function Product({ params }: ProductProps) {
   const { product } = await useGetProductBySlug(params);
 
-  return (
+  return product ? (
     <div className="relative grid max-h-[860px] grid-cols-3">
       <div className="col-span-2 overflow-hidden">
         <Image
@@ -108,5 +108,7 @@ export default async function Product({ params }: ProductProps) {
         </button>
       </div>
     </div>
+  ) : (
+    <h1>Nenhum produto encontrado</h1>
   );
 }

@@ -1,9 +1,9 @@
-import { useFetchFeaturedProducts } from "@/hooks/products/useFetchFeaturedProducts";
+import { useGetFeaturedProducts } from "@/hooks/products/useGetFeaturedProducts";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
-  const { products } = await useFetchFeaturedProducts();
+  const { products } = await useGetFeaturedProducts();
   const [highLightedProduct, ...otherProducts] = products;
 
   return (
