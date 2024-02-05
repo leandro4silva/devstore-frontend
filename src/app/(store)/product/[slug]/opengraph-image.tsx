@@ -1,4 +1,7 @@
+import { getProductBySlug } from "@/services/products";
 import { ImageResponse } from "next/server";
+import { env } from "@/env";
+import colors from "tailwindcss/colors";
 
 // Route segment config
 export const runtime = "edge";
@@ -12,39 +15,29 @@ export const size = {
 
 export const contentType = "image/png";
 
-// Image generation
-export default async function Image() {
-  // Font
-  const interSemiBold = fetch(
-    new URL("./Inter-SemiBold.ttf", import.meta.url),
-  ).then((res) => res.arrayBuffer());
+export default async function Image({ params }: { params: { slug: string } }) {
+  const product = await getProductBySlug(params.slug);
+
+  const productImageUrl = product
+    ? new URL(product.image, env.APP_URL).toString()
+    : "";
 
   return new ImageResponse(
     (
       <div
         style={{
-          fontSize: 128,
-          background: "white",
+          background: colors.zinc[950],
           width: "100%",
           height: "100%",
           display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          flexDirection: "column",
         }}
       >
-        About Acme
+        <img src={productImageUrl} alt="" style={{ width: "100%" }} />
       </div>
     ),
     {
       ...size,
-      fonts: [
-        {
-          name: "Inter",
-          data: await interSemiBold,
-          style: "normal",
-          weight: 400,
-        },
-      ],
     },
   );
 }
