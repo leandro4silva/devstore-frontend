@@ -1,8 +1,8 @@
 import { Product } from "@/data/types/product";
-import { BadRequest } from "../errors/bad-request";
 import { Either, left, right } from "@/data/core/either";
-import { NotFound } from "../errors/not-found";
 import { Service } from "@/data/core/services";
+import { BadRequest } from "../errors/bad-request-error";
+import { NotFound } from "../errors/not-found-error";
 
 type GetProductBySlugServiceResponse = Either<
   BadRequest | NotFound,

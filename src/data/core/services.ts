@@ -1,5 +1,5 @@
-import { BadRequest } from "@/services/errors/bad-request";
-import { NotFound } from "@/services/errors/not-found";
+import { BadRequest } from "@/services/errors/bad-request-error";
+import { NotFound } from "@/services/errors/not-found-error";
 import { Api } from "../api";
 
 export class Service {

@@ -1,6 +1,6 @@
 import { Alert } from "@/data/core/alert";
 import { Product } from "@/data/types/product";
-import { BadRequest } from "@/services/errors/bad-request";
+import { BadRequest } from "@/services/errors/bad-request-error";
 import { GetProductBySlugService } from "@/services/products/get-product-by-slug";
 
 interface GetProductBySlugParams {

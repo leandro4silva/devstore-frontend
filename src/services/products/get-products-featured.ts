@@ -1,7 +1,7 @@
 import { Product } from "@/data/types/product";
-import { BadRequest } from "../errors/bad-request";
 import { Either, left, right } from "@/data/core/either";
 import { Service } from "@/data/core/services";
+import { BadRequest } from "../errors/bad-request-error";
 
 type GetProductsFeaturedServiceResponse = Either<
   BadRequest,
