@@ -17,3 +17,5 @@ if (!parsedEnv.success) {
 }
 
 export const env = parsedEnv.data;
+
+export type Env = z.infer<typeof envSchema>;

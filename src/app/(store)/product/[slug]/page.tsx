@@ -1,6 +1,6 @@
 import { Product } from "@/data/types/product";
-import { useGetFeaturedProducts } from "@/hooks/products/useGetFeaturedProducts";
-import { useGetProductBySlug } from "@/hooks/products/useGetProductBySlug";
+import { useGetFeaturedProducts } from "@/hooks/products/use-get-featured-products";
+import { useGetProductBySlug } from "@/hooks/products/use-get-product-by-slug";
 import { Metadata } from "next";
 import Image from "next/image";
 

@@ -1,7 +1,7 @@
-import { getProductBySlug } from "@/services/products";
 import { ImageResponse } from "next/server";
 import { env } from "@/env";
 import colors from "tailwindcss/colors";
+import { useGetProductBySlug } from "@/hooks/products/use-get-product-by-slug";
 
 // Route segment config
 export const runtime = "edge";
@@ -16,7 +16,7 @@ export const size = {
 export const contentType = "image/png";
 
 export default async function Image({ params }: { params: { slug: string } }) {
-  const product = await getProductBySlug(params.slug);
+  const { product } = await useGetProductBySlug(params);
 
   const productImageUrl = product
     ? new URL(product.image, env.APP_URL).toString()
