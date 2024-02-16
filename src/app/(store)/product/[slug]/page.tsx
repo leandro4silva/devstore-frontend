@@ -1,3 +1,4 @@
+import AddToCartButton from "@/components/add-to-cart-button";
 import { Product } from "@/data/types/product";
 import { useGetFeaturedProducts } from "@/hooks/products/use-get-featured-products";
 import { useGetProductBySlug } from "@/hooks/products/use-get-product-by-slug";
@@ -100,12 +101,7 @@ export default async function Product({ params }: ProductProps) {
           </div>
         </div>
 
-        <button
-          type="button"
-          className="mt-8 flex h-12 items-center justify-center rounded-full bg-emerald-600 font-semibold text-white"
-        >
-          Adicionar ao carrinho
-        </button>
+        <AddToCartButton productId={product.id} />
       </div>
     </div>
   ) : (
